@@ -1,0 +1,2 @@
+# Barbar
+Barebones Barcodes Scanner
