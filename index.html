@@ -83,11 +83,17 @@ label {
 .container-half {
   /*display: block;*/
   float: left;
+  /* looses too much space on mobile device
   margin-left: 20px;
   margin-right: 30px;
+  */
+  margin-left: 5px;
+  margin-right: 5px;
 }
 .feedC {
   position: relative;
+  background-color: black; /* thnk: left and right edges, or whole edges could become red or green as well as cnvs overlay ? */
+  border: 1px solid green;
 }
 #cnvs{
   border: 1px solid grey;
