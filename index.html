@@ -61,6 +61,7 @@ pre span:before {
 #results {
   border-left: none;
   border-left: 3px solid gray;
+  min-height: 150px;
   max-height: 300px;
   overflow: scroll;
   /* quick tweak trick to get latest scanned codes on top of list */
@@ -398,7 +399,8 @@ delayInput2.addEventListener('input', function(e){
       console.log('popping list of scanned codes ..');
       var ret = confirm('Sure you want to pop the last scanned code ?');
       if(ret === true){
-        results.children[0].remove();
+        //results.children[0].remove(); // removes the 1st item added
+        results.children[results.children.length-1].remove(); // remove last item added
         scansCntr -=1;
       }
     }, false);
