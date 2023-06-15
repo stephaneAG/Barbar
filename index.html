@@ -29,7 +29,8 @@
     #test {
   color: gray;
 }
-body { overflow: hidden; }
+body { overflow: hidden; pointer-events: none; } /*prevent body scroll & iOS standalone fix*/
+body * { pointer-events: auto; }
 .button {
   padding: 5px;
 }
