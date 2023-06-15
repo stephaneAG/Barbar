@@ -29,7 +29,7 @@
     #test {
   color: gray;
 }
-body { overflow: hidden; pointer-events: none; } /*prevent body scroll & iOS standalone fix*/
+html, body { overflow: hidden; height: 100vh; pointer-events: none; } /*prevent body scroll & iOS standalone fix*/
 body * { pointer-events: auto; }
 .button {
   padding: 5px;
@@ -62,7 +62,7 @@ pre span:before {
 #results {
   border-left: none;
   border-left: 3px solid gray;
-  min-height: 150px;
+  min-height: fit-content;
   max-height: 300px;
   overflow: scroll;
   /* quick tweak trick to get latest scanned codes on top of list */
@@ -100,7 +100,14 @@ label {
 .feedC {
   position: relative;
   /*background-color: black;*/ /* thnk: left and right edges, or whole edges could become red or green as well as cnvs overlay ? */
-  /*border: 1px solid green;*/
+  border: 1px solid green;
+  /*transform: scale(1.25,1.25);*/
+  height: 200px;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.feedC * {
+  transform: scale(1.25,1.25); /* r: alternatives be 'zoom' or some rework of js */
 }
 video {
   background: black;
