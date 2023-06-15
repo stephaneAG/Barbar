@@ -128,7 +128,7 @@ label {
         <a class="button" id="resetButton">Reset</a>
       </div>
 
-      <div id="sourceSelectPanel" style="display:none">
+      <div id="sourceSelectPanel" class="hidden" style="display:none">
         <label for="sourceSelect">Change video source:</label>
         <select id="sourceSelect" style="max-width:400px">
         </select>
@@ -163,7 +163,7 @@ label {
 
       <a class="button" id="clearListButton">Clear</a>
       <a class="button" id="exportListButton">Export</a>
-      <a class="button" id="clipboardListButton">Clipboard</a>
+      <a class="button" id="clipboardListButton">Clip</a>
 
       <!-- <pre><code id="results"></code></pre> -->
       <pre id="results"></pre>
@@ -200,11 +200,11 @@ label {
   function dummyPopulate(){
     for(var i=0; i<dumbPopulation; i++){
       //document.getElementById('results').textContent +=
-      //document.getElementById('results').innerHTML += 
-      //'<span>'+(Math.random()*10e12).toFixed(0)+'</span>'+'\n';
+      // append
+      document.getElementById('results').innerHTML += '<span>'+(Math.random()*10e12).toFixed(0)+'</span>'+'\n';
 
-      // prepend
-      document.getElementById('results').innerHTML = '<span >'+(Math.random()*10e12).toFixed(0)+'</span>'+'\n' + document.getElementById('results').innerHTML;
+      // prepend - no longer used since found a css approach to get latest stuff on top & wirh bigger index
+      //document.getElementById('results').innerHTML = '<span >'+(Math.random()*10e12).toFixed(0)+'</span>'+'\n' + document.getElementById('results').innerHTML;
       //document.getElementById('results').scrollTo(0, 0);
       //document.getElementById('results').scrollTop = 0;
       document.getElementById('results').scrollTop -= document.getElementById('results').scrollHeight;
@@ -312,11 +312,10 @@ delayInput2.addEventListener('input', function(e){
                 //document.getElementById('results').textContent += result.text+'\n';
 
                 // append
-                //document.getElementById('results').innerHTML += 
-      //'<span id="'+result.text+'" data-qtty="1">'+(result.text)+'</span>'+'\n';
+                document.getElementById('results').innerHTML += '<span id="'+result.text+'" data-qtty="1">'+(result.text)+'</span>'+'\n';
 
-                // prepend
-                document.getElementById('results').innerHTML = '<span id="'+result.text+'" data-qtty="1">'+(result.text)+'</span>'+'\n' + document.getElementById('results').innerHTML;
+                // prepend - no longer used since found a css approach to get latest stuff on top & wirh bigger index
+               // document.getElementById('results').innerHTML = '<span id="'+result.text+'" data-qtty="1">'+(result.text)+'</span>'+'\n' + document.getElementById('results').innerHTML;
                 //document.getElementById('results').scrollTo(0, 0);
                 //document.getElementById('results').scrollTop = 0;
                 document.getElementById('results').scrollTop -= document.getElementById('results').scrollHeight;
@@ -357,6 +356,9 @@ delayInput2.addEventListener('input', function(e){
             })
             console.log(`Started continous decode from camera with id ${selectedDeviceId}`)
           })
+
+          // untested addition likely to fail but, hey, let's try anyway, to auto-start the camera feed & play initial beep
+          document.getElementById('startButton').click();
 
           document.getElementById('resetButton').addEventListener('click', () => {
             codeReader.reset()
