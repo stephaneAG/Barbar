@@ -29,9 +29,9 @@
     #test {
   color: gray;
 }
-
+body { overflow: hidden; }
 .button {
-  padding: 2.5px;
+  padding: 5px;
 }
 
 pre {
@@ -130,7 +130,7 @@ video {
       -->
 
       <section class="container-half">
-      <label>Video feed/stream:</label>
+      <label class="hidden">Video feed/stream:</label>
 
       <div class="feedC">
         <canvas id="cnvs" width="300" height="200"></canvas>
@@ -176,8 +176,10 @@ video {
       <pre class="hidden" id="batchespre"><code id="batches"></code></pre>
 
       <a class="button" id="clearListButton">Clear</a>
-      <a class="button" id="exportListButton">Export</a>
+      <a class="button" id="popListButton">Pop</a>
       <a class="button" id="clipboardListButton">Clip</a>
+      <a class="button" id="exportListButton">Export</a>
+      
 
       <!-- <pre><code id="results"></code></pre> -->
       <pre id="results"></pre>
@@ -295,7 +297,7 @@ delayInput2.addEventListener('input', function(e){
           }
 
           document.getElementById('startButton').addEventListener('click', () => {
-            //beepSnd.play(); // added bonus side effect on iOS: one-time audio en - tmp commented out to see behavior with autostart
+            beepSnd.play(); // added bonus side effect on iOS: one-time audio en - tmp commented out to see behavior with autostart
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
               if (result) {
                 //console.log(video.videoWidth);
@@ -372,7 +374,7 @@ delayInput2.addEventListener('input', function(e){
           })
 
           // untested addition likely to fail but, hey, let's try anyway, to auto-start the camera feed & play initial beep
-          document.getElementById('startButton').click();
+          //document.getElementById('startButton').click();
 
           document.getElementById('resetButton').addEventListener('click', () => {
             codeReader.reset()
@@ -390,6 +392,16 @@ delayInput2.addEventListener('input', function(e){
 
 
     // ADDITION(S) to:
+
+    // remove last item added to list ( currently got not enoughtime to do so for each )
+    popListButton.addEventListener('click', function(e){
+      console.log('popping list of scanned codes ..');
+      var ret = confirm('Sure you want to pop the last scanned code ?');
+      if(ret === true){
+        results.children[0].remove();
+        scansCntr -=1;
+      }
+    }, false);
 
     // clear the list of scanned codes
     clearListButton.addEventListener('click', function(e){
