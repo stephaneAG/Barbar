@@ -287,7 +287,7 @@ delayInput2.addEventListener('input', function(e){
           }
 
           document.getElementById('startButton').addEventListener('click', () => {
-            beepSnd.play(); // added bonus side effect on iOS: one-time audio en
+            //beepSnd.play(); // added bonus side effect on iOS: one-time audio en - tmp commented out to see behavior with autostart
             codeReader.decodeFromVideoDevice(selectedDeviceId, 'video', (result, err) => {
               if (result) {
                 //console.log(video.videoWidth);
